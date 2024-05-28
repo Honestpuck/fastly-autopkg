@@ -36,6 +36,7 @@ jobs:
 
     - name: Install Python dependencies #(remove pyyaml line if you don't use yaml recipes)
       run: |
+        echo "Install"
         pip3 install --upgrade pip
         pip3 install -r requirements.txt
         pip3 install pyyaml
