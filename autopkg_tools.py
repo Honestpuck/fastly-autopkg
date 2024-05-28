@@ -32,9 +32,7 @@ SLACK_WEBHOOK = os.environ.get("SLACK_WEBHOOK_URL", None)
 JAMF_REPO = os.path.join(os.getenv("GITHUB_WORKSPACE", "/tmp/"), "jamf-repo")
 OVERRIDES_DIR = os.path.relpath("overrides/")
 RECIPE_TO_RUN = os.environ.get("RECIPE", None)
-JAMF_SANDBOX_API_PASSWORD="jessica92"
-JAMF_SANDBOX_API_USERNAME="autopkg"
-JAMF_SANDBOX_API_URL="https://honestpuck.nfr"
+
 
 class Recipe(object):
     def __init__(self, path):
