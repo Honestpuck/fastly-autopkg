@@ -60,6 +60,9 @@ jobs:
         defaults write com.github.autopkg YOUR_API_PASSWORD_VARIABLE "${{ secrets.YOUR_GITHUB_SECRET_NAME }}"
         defaults write com.github.autopkg YOUR_URL_VARIABLE "${{ secrets.YOUR_GITHUB_SECRET_NAME }}"
         defaults write com.github.autopkg SLACK_WEBHOOK_URL "${{ secrets.YOUR_GITHUB_SECRET_NAME }}"
+        defaults write com.github.autopkg JAMF_SANDBOX_USERNAME "${{ secrets.SANDBOX_SECRET }}"
+        defaults write com.github.autopkg JAMF_SANDBOX_PASSWORD "${{ secrets.SANDBOX_SECRET }}"
+        defaults write com.github.autopkg JAMF_SANDBOX_URL "${{ secrets.SANDBOX_SECRET }}"
         git config --global user.name "runner"
         git config --global user.email "runner@githubactions.local"
 
