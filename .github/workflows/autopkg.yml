@@ -29,6 +29,13 @@ jobs:
       AUTOPKG_SHA256: "2ff34daf02256ad81e2c74c83a9f4c312fa2f9dd212aba59e0cef0e6ba1be5c9"
       AUTOPKG_URL: "https://github.com/autopkg/autopkg/releases/download/v2.7.2/autopkg-2.7.2.pkg"
     steps:
+    - name: Install AutoPkg
+      run: |
+        curl -L ${{ env.AUTOPKG_URL }} --output /tmp/autopkg.pkg
+        echo "${{ env.AUTOPKG_SHA256 }} */tmp/autopkg.pkg" | shasum -c
+        if [[ $? != "0" ]]; then exit 1; fi
+        sudo installer -pkg /tmp/autopkg.pkg -target /
+
     - name: Setup Python
       uses: actions/setup-python@v4 #v4.7.0
       with:
