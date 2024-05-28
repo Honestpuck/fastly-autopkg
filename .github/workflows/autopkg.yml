@@ -40,24 +40,9 @@ jobs:
 
     - name: Install Python dependencies #(remove pyyaml line if you don't use yaml recipes)
       run: |
-        pip3 install --upgrade pip
-        pip3 install -r requirements.txt
         pip3 install pyyaml
-      
-    steps:
-      - name: Checkout AutoPkg recipes
-      uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 #v3.5.3 Pin SHA1 hash instead of version
-      with:
-        fetch-depth: 1
-        
-    - name: Setup Python
-      uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1 #v4.7.0
-      with:
-        python-version: 3.11
-    - name: Install Python dependencies #(remove pyyaml line if you don't use yaml recipes)
-      run: |
-        pip3 install -r requirements.txt
-        pip3 install pyyaml
+        pip3 install requests
+        pip3 install urllib3
 
     - name: Install AutoPkg
       run: |
@@ -82,3 +67,32 @@ jobs:
       run: |
         for repo in $(cat repo_list.txt); do autopkg repo-add "$repo"; done
 
+    - name: Run AutoPkg
+      run: |
+        python3 autopkg_tools.py -l recipe_list.json
+        if [ -f pull_request_title ]; then
+        echo "TITLE=$(cat pull_request_title)" >> $GITHUB_ENV
+        echo "BODY<<EOF" >> $GITHUB_ENV
+        cat pull_request_body >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+        fi
+      env:
+        RECIPE: ${{ github.event.inputs.recipe }}
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} #If you change this variable name above, change it here too
+
+    - name: Create Trust Info pull request
+      if: env.TITLE
+      run: |
+        export BRANCH_NAME=trust-info-`date +'%Y-%m-%d'`
+        git checkout -b $BRANCH_NAME
+        git add overrides/
+        git commit -m "${{ env.TITLE }}"
+        git push --set-upstream origin $BRANCH_NAME
+        jq -n --arg title "${{ env.TITLE }}" \
+              --arg body "$BODY" \
+              --arg head "$BRANCH_NAME" \
+           '{title: $title, body: $body, head: $head, "base": "${{ github.ref }}"}' | curl -s --request POST \
+           --url https://api.github.com/repos/${{ github.repository }}/pulls \
+           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+           --header 'content-type: application/json' \
+           -d@-
