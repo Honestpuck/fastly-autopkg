@@ -52,13 +52,3 @@ jobs:
       run: |
         for repo in $(cat repo_list.txt); do autopkg repo-add "$repo"; done
 
-    - name: Setup Python
-      uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1 #v4.7.0
-      with:
-        python-version: 3.11
-        
-    - name: Install Python dependencies #(remove pyyaml line if you don't use yaml recipes)
-      run: |
-        pip3 install --upgrade pip
-        pip3 install -r requirements.txt
-        pip3 install pyyaml
