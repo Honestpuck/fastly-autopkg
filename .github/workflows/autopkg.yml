@@ -41,3 +41,8 @@ jobs:
       with:
         python-version: 3.11
         
+    - name: Install Python dependencies #(remove pyyaml line if you don't use yaml recipes)
+      run: |
+        pip3 install --upgrade pip
+        pip3 install -r requirements.txt
+        pip3 install pyyaml
