@@ -28,6 +28,21 @@ jobs:
     env:
       AUTOPKG_SHA256: "2ff34daf02256ad81e2c74c83a9f4c312fa2f9dd212aba59e0cef0e6ba1be5c9"
       AUTOPKG_URL: "https://github.com/autopkg/autopkg/releases/download/v2.7.2/autopkg-2.7.2.pkg"
+    steps:
+    - name: Checkout AutoPkg recipes
+      uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 #v3.5.3 Pin SHA1 hash instead of version
+      with:
+        fetch-depth: 1
+    - name: Setup Python
+      uses: actions/setup-python@61a6322f88396a6271a6ee3565807d608ecaddd1 #v4.7.0
+      with:
+        python-version: 3.11
+
+    - name: Install Python dependencies #(remove pyyaml line if you don't use yaml recipes)
+      run: |
+        pip3 install --upgrade pip
+        pip3 install -r requirements.txt
+        pip3 install pyyaml
       
     steps:
       - name: Checkout AutoPkg recipes
