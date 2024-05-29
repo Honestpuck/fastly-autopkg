@@ -8,7 +8,7 @@
         <trigger_other>install-%NAME%</trigger_other>
         <frequency>Ongoing</frequency>
         <category>
-            <name>%POLICY_CATEGORY%</name>
+            <name>Test</name>
         </category>
     </general>
     <!-- Scope -->
