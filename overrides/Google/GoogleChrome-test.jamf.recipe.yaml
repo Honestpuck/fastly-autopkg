@@ -64,6 +64,3 @@ Process:
     patch_template: '%PATCH_TEMPLATE%'
     replace_patch: 'true'
   Processor: com.github.grahampugh.jamf-upload.processors/JamfPatchUploader
-- Arguments:
-    slack_webhook_url: '%SLACK_WEBHOOK_URL%'
-  Processor: com.github.grahampugh.jamf-upload.processors/JamfUploaderSlacker
