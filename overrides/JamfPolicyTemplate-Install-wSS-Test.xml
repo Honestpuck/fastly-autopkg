@@ -7,9 +7,7 @@
         <!--<trigger_enrollment_complete>true</trigger_enrollment_complete>-->
         <trigger_other>install-%NAME%</trigger_other>
         <frequency>Ongoing</frequency>
-        <category>
-            <name>Test</name>
-        </category>
+        <category/>
     </general>
     <!-- Scope -->
     <scope>
