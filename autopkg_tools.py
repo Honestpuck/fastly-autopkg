@@ -140,8 +140,6 @@ class Recipe(object):
                     "run",
                     self.path,
                     "-v",
-                    "--post",
-                    "io.github.hjuutilainen.VirusTotalAnalyzer/VirusTotalAnalyzer",
                     "--report-plist",
                     report,
                 ]
@@ -297,31 +295,6 @@ def slack_alert(recipe, opts):
     else:
         # Also no updates
         return
-
-    response = requests.post(
-        SLACK_WEBHOOK,
-        data=json.dumps(
-            {
-                "attachments": [
-                    {
-                        "username": "Autopkg",
-                        "as_user": True,
-                        "title": task_title,
-                        "color": "warning" if not recipe.verified else "good" if not recipe.error else "danger",
-                        "text": task_description,
-                        "mrkdwn_in": ["text"],
-                    }
-                ]
-            }
-        ),
-        headers={"Content-Type": "application/json"},
-    )
-    if response.status_code != 200:
-        raise ValueError(
-            "Request to slack returned an error %s, the response is:\n%s"
-            % (response.status_code, response.text)
-        )
-
 
 def main():
     parser = OptionParser(description="Wrap AutoPkg with git support.")
