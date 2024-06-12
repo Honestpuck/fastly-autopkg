@@ -1,0 +1,63 @@
+Description: Downloads latest Handbrake disk image and builds a package.
+Identifier: com.github.fastly.recipes.jamf.Handbrake-test
+Input:
+  API_PASSWORD: '%YOUR_API_PASSWORD_VARIABLE%'
+  API_USERNAME: '%YOUR_API_USERNAME_VARIABLE%'
+  CATEGORY: Browsers
+  GROUP_NAME: '%NAME%-update-smart'
+  GROUP_TEMPLATE: JamfSmartGroupTemplate-NeedsUpdateInstall-Test.xml
+  JSS_URL: '%YOUR_URL_VARIABLE%'
+  NAME: Handbrake
+  PATCH_ENABLED: 'true'
+  PATCH_NAME: '%NAME%'
+  PATCH_SOFTWARE_TITLE: '%NAME%'
+  PATCH_TEMPLATE: JamfPatchTemplate-SS-Test.xml
+  POLICY_CATEGORY: Testing
+  POLICY_NAME: '%NAME%'
+  POLICY_TEMPLATE: JamfPolicyTemplate-Install-wSS-Test.xml
+  SELF_SERVICE_DESCRIPTION: Handbrak is a video converter
+  SELF_SERVICE_DISPLAY_NAME: '%NAME% - %version%'
+  SELF_SERVICE_ICON: '%NAME%.png'
+  TESTING_GROUP_NAME: Testing
+  UPDATE_PREDICATE: pkg_uploaded == False
+MinimumVersion: 0.4.0
+ParentRecipe: com.github.autopkg.pkg.handbrake
+ParentRecipeTrustInfo:
+  non_core_processors: {}
+  parent_recipes:
+    com.github.autopkg.download.handbrake:
+      path: ~/work/fastly-autopkg/fastly-autopkg/repos/com.github.autopkg.recipes/Handbrake/Handbrake.download.recipe
+      sha256_hash: c40d4e8024807e981269ed2725feb1a24030292fcad57aa089b92ef3e442d603
+    com.github.autopkg.pkg.googlechrome:
+      path: ~/work/fastly-autopkg/fastly-autopkg/repos/com.github.autopkg.recipes/GoogleChrome/GoogleChrome.pkg.recipe
+      sha256_hash: 9aebd03b9dc256d2c2807b49b9735febc2c6b4729c4a1d0c02b3be3111974a61
+Process:
+- Arguments:
+    computergroup_name: '%GROUP_NAME%'
+    computergroup_template: '%GROUP_TEMPLATE%'
+    replace_group: 'true'
+  Processor: com.github.grahampugh.jamf-upload.processors/JamfComputerGroupUploader
+- Arguments:
+    API_PASSWORD: '%API_PASSWORD%'
+    API_USERNAME: '%API_USERNAME%'
+    JSS_URL: '%JSS_URL%'
+  Processor: com.github.grahampugh.jamf-upload.processors/JamfPackageUploader
+- Arguments:
+    predicate: '%UPDATE_PREDICATE%'
+  Processor: StopProcessingIf
+- Arguments:
+    icon: '%SELF_SERVICE_ICON%'
+    policy_name: '%POLICY_NAME%'
+    policy_template: '%POLICY_TEMPLATE%'
+    replace_policy: 'true'
+  Processor: com.github.grahampugh.jamf-upload.processors/JamfPolicyUploader
+- Arguments:
+    API_PASSWORD: '%API_PASSWORD%'
+    API_USERNAME: '%API_USERNAME%'
+    JSS_URL: '%JSS_URL%'
+    patch_icon_policy_name: '%POLICY_NAME%'
+    patch_name: '%PATCH_NAME%'
+    patch_softwaretitle: '%PATCH_SOFTWARE_TITLE%'
+    patch_template: '%PATCH_TEMPLATE%'
+    replace_patch: 'true'
+  Processor: com.github.grahampugh.jamf-upload.processors/JamfPatchUploader
