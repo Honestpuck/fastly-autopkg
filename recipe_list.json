@@ -1,4 +1,5 @@
 [
 	"Google/GoogleChrome-test.jamf.recipe.yaml",
-	"Handbrake/Handbrake-test.jamf.recipe.yaml"
+	"Handbrake/Handbrake-test.jamf.recipe.yaml",
+	"Mozilla/Firefox-test.jamf.recipe.yaml"
 ]
