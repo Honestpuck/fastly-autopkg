@@ -22,7 +22,7 @@ Input:
   TESTING_GROUP_NAME: Testing
   UPDATE_PREDICATE: pkg_uploaded == False
 MinimumVersion: 0.4.0
-ParentRecipe: com.github.autopkg.pkg.firefox
+ParentRecipe: firefox.pkg.recipe
 ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
