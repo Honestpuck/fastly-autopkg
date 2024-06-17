@@ -26,10 +26,10 @@ ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
     com.github.autopkg.download.handbrake:
-      path: ~/ Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Handbrake/Handbrake.download.recipe
+      path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Handbrake/Handbrake.download.recipe
       sha256_hash: c40d4e8024807e981269ed2725feb1a24030292fcad57aa089b92ef3e442d603
     com.github.autopkg.pkg.handbrake:
-      path: ~/ Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Handbrake/Handbrake.pkg.recipe
+      path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Handbrake/Handbrake.pkg.recipe
       sha256_hash: 9aebd03b9dc256d2c2807b49b9735febc2c6b4729c4a1d0c02b3be3111974a61
 Process:
 - Arguments:
