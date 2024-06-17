@@ -15,8 +15,7 @@ Input:
   POLICY_CATEGORY: Testing
   POLICY_NAME: '%NAME%'
   POLICY_TEMPLATE: JamfPolicyTemplate-Install-wSS-Test.xml
-  SELF_SERVICE_DESCRIPTION: Firefox is a cross-platform web browser developed
-    by Google.
+  SELF_SERVICE_DESCRIPTION: Firefox is a cross-platform web browser.
   SELF_SERVICE_DISPLAY_NAME: '%NAME% - %version%'
   SELF_SERVICE_ICON: '%NAME%.png'
   TESTING_GROUP_NAME: Testing
@@ -26,11 +25,11 @@ ParentRecipe: firefox.pkg.recipe
 ParentRecipeTrustInfo:
   non_core_processors: {}
   parent_recipes:
-    com.github.autopkg.download.Handbrake:
+    com.github.autopkg.download.firefox:
       git_hash: 93d8f9c58313e2462659267a1ba53a22d36d7fa9
       path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Mozilla/firefox.download.recipe
       sha256_hash: c40d4e8024807e981269ed2725feb1a24030292fcad57aa089b92ef3e442d603
-    com.github.autopkg.pkg.Handbrake:
+    com.github.autopkg.pkg.firefox:
       path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Mozilla/firefox.pkg.recipe
       sha256_hash: 9aebd03b9dc256d2c2807b49b9735febc2c6b4729c4a1d0c02b3be3111974a61
 Process:

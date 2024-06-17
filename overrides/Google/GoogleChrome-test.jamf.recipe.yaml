@@ -64,3 +64,7 @@ Process:
     patch_template: '%PATCH_TEMPLATE%'
     replace_patch: 'true'
   Processor: com.github.grahampugh.jamf-upload.processors/JamfPatchUploader
+- Arguments:
+    VIRUSTOTAL_ALWAYS_REPORT: 'true'
+    VIRUSTOTAL_AUTO_SUBMIT: 'true'
+  Processor: io.github.hjuutilainen.VirusTotalAnalyzer/VirusTotalAnalyzer
