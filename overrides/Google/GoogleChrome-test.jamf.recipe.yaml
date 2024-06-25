@@ -6,7 +6,7 @@ Input:
   CATEGORY: Browsers
   GROUP_NAME: '%NAME%-update-smart'
   GROUP_TEMPLATE: JamfSmartGroupTemplate-NeedsUpdateInstall-Test.xml
-  JSS_URL: '%JSS_URL%'
+  JSS_URL: 'https://honestpucknfr.jamfcloud.com'
   NAME: Google Chrome
   PATCH_ENABLED: 'true'
   PATCH_NAME: '%NAME%'
