@@ -23,15 +23,19 @@ Input:
 MinimumVersion: 0.4.0
 ParentRecipe: firefox.pkg.recipe
 ParentRecipeTrustInfo:
-  non_core_processors: {}
+  non_core_processors:
+    MozillaURLProvider:
+      git_hash: a28e56e90ebc52512a4b7ec8fe1981bf02e92bc5
+      path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Mozilla/MozillaURLProvider.py
+      sha256_hash: c4ce035b1a629c4925a80003899fcf39480e5224b3015613440f07ab96211f17
   parent_recipes:
-    com.github.autopkg.download.firefox:
-      git_hash: 93d8f9c58313e2462659267a1ba53a22d36d7fa9
-      path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Mozilla/firefox.download.recipe
-      sha256_hash: c40d4e8024807e981269ed2725feb1a24030292fcad57aa089b92ef3e442d603
-    com.github.autopkg.pkg.firefox:
+    com.github.autopkg.download.firefox-rc-en_US:
+      git_hash: 00f9b0ea8aa77716c0875f9aff6f1281cbf8d84d
+      path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Mozilla/Firefox.download.recipe
+      sha256_hash: 6d17ddeb226c88af7b4bdef7f981634f2da18403e0ebb86afeb5cfbdf4dc5237
+    com.github.autopkg.pkg.Firefox_EN:
       path: ~/Library/AutoPkg/RecipeRepos/com.github.autopkg.recipes/Mozilla/firefox.pkg.recipe
-      sha256_hash: 9aebd03b9dc256d2c2807b49b9735febc2c6b4729c4a1d0c02b3be3111974a61
+      sha256_hash: a1fafce10730e5d42f56843e6c9323d4651c6b3dad0663f6a6468c01b7cc1041
 Process:
 - Arguments:
     computergroup_name: '%GROUP_NAME%'
